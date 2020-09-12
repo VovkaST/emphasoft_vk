@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block friends_list %}
+<ul class="friends-list">
+    {% for friend in friends %}
+        <li class="friends-list__item">
+            <div class="image">
+                <img src="{{ friend.avatar }}" alt="{{ friend.name }}">
+            </div>
+            <div class="info">
+                <div class="info__name">
+                    <div class="row">
+                        <a href="{{ friend.vk_link }}" target="_blank">{{ friend.name }}</a>
+                    </div>
+                    <div class="row">
+                        {{ friend.city }}
+                    </div>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

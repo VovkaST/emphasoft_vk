@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+    {% if not request.user.is_authenticated %}
+        <a href="{% url "social:begin" "vk-oauth2" %}">Войти через ВКонтакте</a>
+    {% else %}
+        <h3>Добро пожаловать, {{ request.user.last_name }} {{ request.user.first_name }}</h3>
+
+        {% block friends_list %} {% endblock %}
+
+        <a href="{% url "user:logout" %}">Выход</a>
+    {% endif %}
+</body>
+</html>
