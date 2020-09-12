@@ -21,6 +21,7 @@ from .views import main_page
 urlpatterns = [
     path('', main_page, name='main_page'),
     path('admin/', admin.site.urls),
-    path('auth_socials/', include('user_vk.urls')),
     path('user/', include(('django.contrib.auth.urls', 'user'), namespace='user')),
+    path('auth_socials/', include('social_django.urls'), name='social'),
+    path('auth_socials/', main_page, name='social_redirect'),
 ]

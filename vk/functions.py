@@ -18,7 +18,7 @@ def get_access_token(user, provider) -> str:
         else:
             social_user = UserSocialAuth.objects.get(user=user.id, provider=provider)
     except UserSocialAuth.DoesNotExist:
-        return None
+        return ''
 
     return social_user.extra_data.get('access_token')
 
