@@ -28,6 +28,7 @@ def get_user_vk_friends(user, k):
             city = item.get('city', dict()).get('title', '')
             country = item.get('country', dict()).get('title', '')
             friends.append({
+                'network_status': 'В сети' if item.get('online') else 'Не в сети',
                 'vk_link': 'https://vk.com/{}'.format(item.get('domain')),
                 'name': '{} {}'.format(item.get('last_name'), item.get('first_name')),
                 'avatar': item.get('photo_100'),

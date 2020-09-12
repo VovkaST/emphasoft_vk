@@ -1,0 +1,41 @@
+.fixed-container {
+    width: 1024px;
+    margin: 0 auto;
+}
+.friends-list {
+    padding: 0;
+}
+.row-no-margin {
+    margin-left: 0;
+    margin-right: 0;
+}
+.friends-list__item {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    list-style: none;
+}
+.friends-list__item:hover {
+    border-color: #a7a7a7;
+}
+.friends-list__item:not(:last-child) {
+    margin-right: 5px;
+}
+.info {
+    margin-left: 10px;
+}
+.info__city {
+    font-size: 0.8em;
+}
+.info__network-status {
+    text-align: right;
+    font-size: 0.8em;
+    color: gray;
+}
+.image {
+    margin-bottom: 5px;
+}
+.image__image {
+    border-radius: 20px;
+}

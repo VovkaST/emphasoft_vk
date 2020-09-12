@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
-{% block friends_list %}
-<ul class="friends-list">
+{% block random_friends %}
+    <h5>Случайные друзья:</h5>
+<ul class="row justify-content-between friends-list row-no-margin">
     {% for friend in friends %}
-        <li class="friends-list__item">
-            <div class="image">
-                <img src="{{ friend.avatar }}" alt="{{ friend.name }}">
-            </div>
-            <div class="info">
-                <div class="info__name">
-                    <div class="row">
-                        <a href="{{ friend.vk_link }}" target="_blank">{{ friend.name }}</a>
-                    </div>
-                    <div class="row">
-                        {{ friend.city }}
-                    </div>
+        <li class="col justify-content-start friends-list__item">
+            <div class="row row-no-margin justify-content-between">
+                <div class="image">
+                    <img src="{{ friend.avatar }}" alt="{{ friend.name }}" class="image__image">
                 </div>
+                <div class="info__network-status">
+                    {{ friend.network_status }}
+                </div>
+            </div>
+            <div class="info align-self-center">
+                <div class="info__name">
+                    <a href="{{ friend.vk_link }}" target="_blank">{{ friend.name }}</a>
+                </div>
+                <div class="info__city">
+                    {{ friend.city }}
+                </div>
+
             </div>
         </li>
     {% endfor %}
