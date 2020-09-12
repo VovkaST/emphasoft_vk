@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block logout %}{% endblock %}
+
+{% block login %}
+    <div class="authorization container">
+        <h1 class="authorization__header row justify-content-center">Авторизация</h1>
+        <form action="/user/login/" method="post" class="">
+            {% csrf_token %}
+            <div class="row justify-content-between authorization__row">
+                <label for="id_username">Имя пользователя:</label>
+                <input type="text" name="username" autofocus required id="id_username">
+            </div>
+            <div class="row justify-content-between authorization__row">
+                <label for="id_password">Пароль:</label>
+                <input type="password" name="password" required id="id_password">
+            </div>
+            <div class="row justify-content-around authorization__row">
+                <a href="{% url "social:begin" "vk-oauth2" %}" class="btn btn-primary">Войти через ВКонтакте</a>
+                <button type="submit" class="btn btn-dark">Вход</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -5,21 +5,33 @@ from social_django.models import UserSocialAuth
 from vk_api import VkApi
 
 
-def get_access_token(user):
+def get_access_token(user, provider) -> str:
+    """
+    Возвращает ключ доступа заданного пользователя и провайдера.
+    В случае отсутствия возвращает None.
+    :param user: Экземпляр класса пользователя Django.
+    :param str provider: Строка имени провайдера SocialAuth.
+    """
     try:
         if hasattr(user, 'social_user'):
             social_user = user.social_user
         else:
-            social_user = UserSocialAuth.objects.get(user=user.id, provider=VKOAuth2.name)
+            social_user = UserSocialAuth.objects.get(user=user.id, provider=provider)
     except UserSocialAuth.DoesNotExist:
         return None
 
-    return social_user.extra_data.get('access_token') or None
+    return social_user.extra_data.get('access_token')
 
 
-def get_user_vk_friends(user, k):
+def get_user_vk_friends(user, k=3) -> list:
+    """
+    Возвращает k случайных друзей ВКонтакте заданного пользователя.
+
+    :param user: Экземпляр класса пользователя Django.
+    :param int k: Длина возвращаемого списка.
+    """
     friends = []
-    token = get_access_token(user=user)
+    token = get_access_token(user=user, provider=VKOAuth2.name)
     if token:
         vk_session = VkApi(token=token)
         api = vk_session.get_api()
